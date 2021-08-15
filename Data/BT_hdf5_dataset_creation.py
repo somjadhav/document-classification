@@ -10,10 +10,10 @@ import pandas as pd
 # samples per class in training set
 
 sets = ['train','val', 'test']
-save_path = '/media/bscuser/bsc/'
+save_path = './'
 for set in sets:
     hdf5_path = save_path + 'BigTobacco_images_' + str(set) + '.hdf5'
-    file_read = open('./labels/' + str(set) + '.txt', "rU")
+    file_read = open('./labels/' + str(set) + '.txt', "r")
     reader = csv.reader(file_read, delimiter=' ')
 
     partition = []
@@ -66,7 +66,7 @@ for set in sets:
         if i % 100 == 0 and i > 1:
             print(str(set) + 'data: {}/{}'.format(i, len(train_addrs)))
 
-        addr = '/media/bscuser/bsc/Tobacco_extracted/' + train_addrs[i]
+        addr = save_path + 'Tobacco_extracted/' + train_addrs[i]
         #addr = addr.replace('.tif', '.png', 1)
         img = cv2.imread(addr)
         img = cv2.resize(img, (img_size, img_size), interpolation=cv2.INTER_CUBIC)
