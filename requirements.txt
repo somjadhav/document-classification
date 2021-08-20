@@ -1,0 +1,17 @@
+boto3
+botocore
+efficientnet-pytorch
+h5py
+numpy
+opencv-python
+overrides
+pandas
+pathlib
+Pillow
+pytesseract
+requests
+torch
+torchtext
+torchvision
+typing
+urllib3
