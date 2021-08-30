@@ -13,7 +13,7 @@ import csv
 if __name__ == '__main__':
 
     #path_save = './OCRS/'
-    file_read = open('./Data/SmallTobacco_nums.csv', "rU")
+    file_read = open('/work/08290/somj/stampede2/scripts/document-classification/Data/Small_Tobacco.csv', "r")
     reader = csv.reader(file_read, delimiter=',')
 
     #Original label csv reading into list
@@ -23,14 +23,15 @@ if __name__ == '__main__':
         new_rows_list.append(row)
     file_read.close()
 
-    file_write = open('./Data/SmallTobacco.csv', "w")
+    file_write = open('/work/08290/somj/stampede2/scripts/document-classification/Data/SmallTobacco.csv', "w")
     writer = csv.writer(file_write, delimiter=',')
 
     counter = 0
     for element in new_rows_list:
         counter += 1
-
-        img_dir = element[0]
+        
+        file_name = element.split("/")[-1]
+        img_dir = "/work/08290/somj/stampede2/data/" + file_name
         #imPath = os.path.join(root,file)
 
 
@@ -47,7 +48,7 @@ if __name__ == '__main__':
         file = open(os.path.join(img_dir[:-4] + ".txt"),"w")
         file.write(text)
 
-        new_row = [element[0],element[1],element[2],img_dir[:-4] + ".txt"]
+        new_row = [img_dir,element[1],element[2],img_dir[:-4] + ".txt"]
         #print(new_row)
 
         writer.writerow(new_row)
