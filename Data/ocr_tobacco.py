@@ -30,7 +30,7 @@ if __name__ == '__main__':
     for element in new_rows_list:
         counter += 1
         
-        file_name = element.split("/")[-1]
+        file_name = element[0].split("/")[-1]
         img_dir = "/work/08290/somj/stampede2/data/" + file_name
         #imPath = os.path.join(root,file)
 

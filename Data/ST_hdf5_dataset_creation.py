@@ -10,7 +10,7 @@ import pandas as pd
 # samples per class in training set
 
 hdf5_path = '/work/08290/somj/stampede2/scripts/document-classification/Data/HDF5_files/hdf5_small_tobacco_paper.hdf5'
-file_read = open('/work/08290/somj/stampede2/scripts/document-classification/Data/Small_Tobacco.csv', "r")
+file_read = open('/work/08290/somj/stampede2/scripts/document-classification/Data/SmallTobacco.csv', "r")
 reader = csv.reader(file_read, delimiter=',')
 
 df = []
