@@ -36,30 +36,30 @@ if __name__ == '__main__':
         file_name = element[0].split("/")[-1]
         img_dir = "/work/08290/somj/stampede2/data/" + file_name
         
-	files = glob.glob(img_dir)
-	if len(files) == 0:
-	    continue
-
-	#imPath = os.path.join(root,file)
-
-
+        files = glob.glob(img_dir)
+        if len(files) == 0:
+            continue
+    
+        	#imPath = os.path.join(root,file)
+    
+    
         config = ('tesseract image.jpg output -l eng --oem 1 --psm 3')
-
+    
         # Read image from disk
         im = cv2.imread(img_dir, cv2.IMREAD_COLOR)
-		
+    		
         # Run tesseract OCR on image
         text = pytesseract.image_to_string(im, config=config)
         #txt_name = os.path.join(imPath, image_name + ".txt")
         #txt_name = imPath + ".txt"
-
+    
         file = open(os.path.join(img_dir[:-4] + ".txt"),"w")
         file.write(text)
-
+    
         new_row = [img_dir,element[1],element[2],img_dir[:-4] + ".txt"]
         #print(new_row)
-
+    
         writer.writerow(new_row)
 
-        # Print recognized text
+    # Print recognized text
     file_write.close()
