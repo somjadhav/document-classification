@@ -6,9 +6,12 @@ from time import sleep
 from PIL import Image, ImageSequence
 import numpy
 import csv
+import glob
 
 # This files reads the image directory from a csv a creates ocr .txt files
 # in the same directory and a new csv with .txt paths added in a new column
+
+pytesseract.pytesseract.tesseract_cmd = '/home1/08290/somj/.local/bin/pytesseract.exe'
 
 if __name__ == '__main__':
 
@@ -32,14 +35,19 @@ if __name__ == '__main__':
         
         file_name = element[0].split("/")[-1]
         img_dir = "/work/08290/somj/stampede2/data/" + file_name
-        #imPath = os.path.join(root,file)
+        
+	files = glob.glob(img_dir)
+	if len(files) == 0:
+	    continue
+
+	#imPath = os.path.join(root,file)
 
 
         config = ('tesseract image.jpg output -l eng --oem 1 --psm 3')
 
         # Read image from disk
         im = cv2.imread(img_dir, cv2.IMREAD_COLOR)
-
+		
         # Run tesseract OCR on image
         text = pytesseract.image_to_string(im, config=config)
         #txt_name = os.path.join(imPath, image_name + ".txt")
