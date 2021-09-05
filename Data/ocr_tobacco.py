@@ -11,7 +11,6 @@ import glob
 # This files reads the image directory from a csv a creates ocr .txt files
 # in the same directory and a new csv with .txt paths added in a new column
 
-pytesseract.pytesseract.tesseract_cmd = '/home1/08290/somj/.local/bin/pytesseract.exe'
 
 if __name__ == '__main__':
 
@@ -34,6 +33,7 @@ if __name__ == '__main__':
         counter += 1
         
         file_name = element[0].split("/")[-1]
+        file_name = file_name[:-4] + '.jpg'
         img_dir = "/work/08290/somj/stampede2/data/" + file_name
         
         files = glob.glob(img_dir)
@@ -47,6 +47,7 @@ if __name__ == '__main__':
     
         # Read image from disk
         im = cv2.imread(img_dir, cv2.IMREAD_COLOR)
+        pytesseract.pytesseract.tesseract_cmd = '/work/08290/somj/stampede2/Tesseract-OCR/tesseract.exe'
     		
         # Run tesseract OCR on image
         text = pytesseract.image_to_string(im, config=config)
