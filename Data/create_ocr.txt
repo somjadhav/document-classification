@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#SBATCH -J createocr
+#SBATCH -o createocr.o
+#SBATCH -e createocr.e
+#SBATCH -p normal
+#SBATCH -N 4
+#SBATCH -n 8
+#SBATCH -t 01:00:00
+#SBATCH --mail-user=somj@stampede2.tacc.utexas.edu
+
+module load python3
+python3 ./ocr_tobacco.py

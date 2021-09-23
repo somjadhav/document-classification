@@ -47,7 +47,7 @@ if __name__ == '__main__':
     
         # Read image from disk
         im = cv2.imread(img_dir, cv2.IMREAD_COLOR)
-        pytesseract.pytesseract.tesseract_cmd = '/work/08290/somj/stampede2/Tesseract-OCR/tesseract.exe'
+        pytesseract.pytesseract.tesseract_cmd = '/home1/08290/somj/.local/bin/tesseract'
     		
         # Run tesseract OCR on image
         text = pytesseract.image_to_string(im, config=config)
