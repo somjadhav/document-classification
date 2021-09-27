@@ -25,8 +25,8 @@ if __name__ == '__main__':
         new_rows_list.append(row)
     file_read.close()
 
-    file_write = open('/work/08290/somj/stampede2/scripts/document-classification/Data/SmallTobacco.csv', "w")
-    writer = csv.writer(file_write, delimiter=',')
+    file_write = open('/work/08290/somj/stampede2/scripts/document-classification/Data/SmallTobacco.csv', "wb")
+    writer = csv.writer(file_write, delimiter=",")
 
     counter = 0
     for element in new_rows_list:
@@ -41,6 +41,11 @@ if __name__ == '__main__':
         files = glob.glob(img_dir)
         if len(files) == 0:
             continue
+
+        new_row = [img_dir,element[1],element[2],img_dir_2]
+        
+        writer.writerow(new_row)
+        
         files_2 = glob.glob(img_dir_2)
         if len(files_2) != 0:
             continue
@@ -58,11 +63,6 @@ if __name__ == '__main__':
     
         file = open(os.path.join(img_dir_2),"w")
         file.write(text)
-    
-        new_row = [img_dir,element[1],element[2],img_dir_2]
-        #print(new_row)
-    
-        writer.writerow(new_row)
 
     # Print recognized text
     file_write.close()
