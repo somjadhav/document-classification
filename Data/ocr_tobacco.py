@@ -34,14 +34,16 @@ if __name__ == '__main__':
         
         file_name = element[0].split("/")[-1]
         file_name = file_name[:-4] + '.jpg'
+        file_name_2  = file_name[:-4] + '.txt'
         img_dir = "/work/08290/somj/stampede2/data/" + file_name
+        img_dir_2 = '/work/08290/somj/stampede2/data/' + file_name_2
         
         files = glob.glob(img_dir)
         if len(files) == 0:
             continue
-    
-        	#imPath = os.path.join(root,file)
-    
+        files_2 = glob.glob(img_dir_2)
+        if len(files_2) != 0:
+            continue
     
         config = ('tesseract image.jpg output -l eng --oem 1 --psm 3')
     
@@ -54,10 +56,10 @@ if __name__ == '__main__':
         #txt_name = os.path.join(imPath, image_name + ".txt")
         #txt_name = imPath + ".txt"
     
-        file = open(os.path.join(img_dir[:-4] + ".txt"),"w")
+        file = open(os.path.join(img_dir_2),"w")
         file.write(text)
     
-        new_row = [img_dir,element[1],element[2],img_dir[:-4] + ".txt"]
+        new_row = [img_dir,element[1],element[2],img_dir_2]
         #print(new_row)
     
         writer.writerow(new_row)
