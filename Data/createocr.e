@@ -1,1 +1,4 @@
-slurmstepd: error: *** JOB 8505438 ON c402-023 CANCELLED AT 2021-09-25T21:24:24 DUE TO TIME LIMIT ***
+Traceback (most recent call last):
+  File "./ocr_tobacco.py", line 47, in <module>
+    writer.writerow(new_row)
+TypeError: a bytes-like object is required, not 'str'
