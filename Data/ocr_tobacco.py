@@ -45,8 +45,9 @@ if __name__ == '__main__':
         new_row = [img_dir,element[1],element[2],img_dir_2]
         
         writer.writerow(new_row)
-        
+        file_write.flush()
         files_2 = glob.glob(img_dir_2)
+        
         if len(files_2) != 0:
             continue
     

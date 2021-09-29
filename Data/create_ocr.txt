@@ -4,8 +4,8 @@
 #SBATCH -o createocr.o
 #SBATCH -e createocr.e
 #SBATCH -p normal
-#SBATCH -N 40
-#SBATCH -n 160
+#SBATCH -N 10
+#SBATCH -n 40
 #SBATCH -t 1:00:00
 #SBATCH --mail-user=som.jadhav@utexas.edu
 
