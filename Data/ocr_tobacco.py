@@ -24,46 +24,45 @@ if __name__ == '__main__':
         #full_row = [row[0], row[1]]
         new_rows_list.append(row)
     file_read.close()
-
-    file_write = open('/work/08290/somj/stampede2/scripts/document-classification/Data/SmallTobacco.csv', "wb")
-    writer = csv.writer(file_write, delimiter=",")
-
     counter = 0
-    for element in new_rows_list:
-        counter += 1
-        
-        file_name = element[0].split("/")[-1]
-        file_name = file_name[:-4] + '.jpg'
-        file_name_2  = file_name[:-4] + '.txt'
-        img_dir = "/work/08290/somj/stampede2/data/" + file_name
-        img_dir_2 = '/work/08290/somj/stampede2/data/' + file_name_2
-        
-        files = glob.glob(img_dir)
-        if len(files) == 0:
-            continue
 
-        new_row = [img_dir,element[1],element[2],img_dir_2]
-        
-        writer.writerow(new_row)
-        file_write.flush()
-        files_2 = glob.glob(img_dir_2)
-        
-        if len(files_2) != 0:
-            continue
-    
-        config = ('tesseract image.jpg output -l eng --oem 1 --psm 3')
-    
-        # Read image from disk
-        im = cv2.imread(img_dir, cv2.IMREAD_COLOR)
-        pytesseract.pytesseract.tesseract_cmd = '/home1/08290/somj/.local/bin/tesseract'
-    		
-        # Run tesseract OCR on image
-        text = pytesseract.image_to_string(im, config=config)
-        #txt_name = os.path.join(imPath, image_name + ".txt")
-        #txt_name = imPath + ".txt"
-    
-        file = open(os.path.join(img_dir_2),"w")
-        file.write(text)
+    with open('./SmallTobacco.csv', "w", newline='') as file_write:
+        writer = csv.writer(file_write, delimiter=",")
+        for element in new_rows_list:
+            counter += 1
+            
+            file_name = element[0].split("/")[-1]
+            file_name = file_name[:-4] + '.jpg'
+            file_name_2  = file_name[:-4] + '.txt'
+            img_dir = "/work/08290/somj/stampede2/data/" + file_name
+            img_dir_2 = '/work/08290/somj/stampede2/data/' + file_name_2
+            
+            files = glob.glob(img_dir)
+            if len(files) == 0:
+                continue
 
-    # Print recognized text
+            new_row = [img_dir,element[1],element[2],img_dir_2]
+            
+            writer.writerow(new_row)
+            file_write.flush()
+            files_2 = glob.glob(img_dir_2)
+            
+            if len(files_2) != 0:
+                continue
+        
+            config = ('tesseract image.jpg output -l eng --oem 1 --psm 3')
+        
+            # Read image from disk
+            im = cv2.imread(img_dir, cv2.IMREAD_COLOR)
+            pytesseract.pytesseract.tesseract_cmd = '/home1/08290/somj/.local/bin/tesseract'
+                
+            # Run tesseract OCR on image
+            text = pytesseract.image_to_string(im, config=config)
+            #txt_name = os.path.join(imPath, image_name + ".txt")
+            #txt_name = imPath + ".txt"
+        
+            file = open(os.path.join(img_dir_2),"w")
+            file.write(text)
+
+        # Print recognized text
     file_write.close()
