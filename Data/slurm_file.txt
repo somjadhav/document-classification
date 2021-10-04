@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#SBATCH -J create_hdf5
+#SBATCH -o slurm_file.o
+#SBATCH -e slurm_file.e
+#SBATCH -p normal
+#SBATCH -N 10
+#SBATCH -n 40
+#SBATCH -t 5:00:00
+#SBATCH --mail-user=som.jadhav@utexas.edu
+
+module load python3
+python3 ./ST_hdf5_dataset_creation.py
