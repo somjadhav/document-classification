@@ -112,35 +112,35 @@ val_shape = (len(val_addrs), img_size, img_size, 3)
 test_shape = (len(test_addrs), img_size, img_size, 3)
 
 # open a hdf5 file and create arrays
-hdf5_file = h5py.File(hdf5_path, mode='w')
+with h5py.File(hdf5_path, mode='w') as hdf5_file:
 
-hdf5_file.create_dataset("train_img", train_shape, np.int8)
-hdf5_file.create_dataset("val_img", val_shape, np.int8)
-hdf5_file.create_dataset("test_img", test_shape, np.int8)
+    hdf5_file.create_dataset("train_img", train_shape, np.int8)
+    hdf5_file.create_dataset("val_img", val_shape, np.int8)
+    hdf5_file.create_dataset("test_img", test_shape, np.int8)
 
-hdf5_file.create_dataset("train_mean", train_shape[1:], np.float32)
+    hdf5_file.create_dataset("train_mean", train_shape[1:], np.float32)
 
-#Train
-hdf5_file.create_dataset("train_labels", (len(train_labels),), np.int8)
-hdf5_file["train_labels"][...] = train_labels
-hdf5_file.create_dataset("train_segmentations", (len(train_segmentations),), np.int8)
-hdf5_file["train_segmentations"][...] = train_segmentations
-hdf5_file.create_dataset("train_ocrs", (len(train_ocrs),), dtype=dt)
+    #Train
+    hdf5_file.create_dataset("train_labels", (len(train_labels),), np.int8)
+    hdf5_file["train_labels"][...] = train_labels
+    hdf5_file.create_dataset("train_segmentations", (len(train_segmentations),), np.int8)
+    hdf5_file["train_segmentations"][...] = train_segmentations
+    hdf5_file.create_dataset("train_ocrs", (len(train_ocrs),), dtype=dt)
 
 
-#Validation
-hdf5_file.create_dataset("val_labels", (len(val_labels),), np.int8)
-hdf5_file["val_labels"][...] = val_labels
-hdf5_file.create_dataset("val_segmentations", (len(val_segmentations),), np.int8)
-hdf5_file["val_segmentations"][...] = val_segmentations
-hdf5_file.create_dataset("val_ocrs", (len(val_ocrs),), dtype=dt)
+    #Validation
+    hdf5_file.create_dataset("val_labels", (len(val_labels),), np.int8)
+    hdf5_file["val_labels"][...] = val_labels
+    hdf5_file.create_dataset("val_segmentations", (len(val_segmentations),), np.int8)
+    hdf5_file["val_segmentations"][...] = val_segmentations
+    hdf5_file.create_dataset("val_ocrs", (len(val_ocrs),), dtype=dt)
 
-#Test
-hdf5_file.create_dataset("test_labels", (len(test_labels),), np.int8)
-hdf5_file["test_labels"][...] = test_labels
-hdf5_file.create_dataset("test_segmentations", (len(test_segmentations),), np.int8)
-hdf5_file["test_segmentations"][...] = test_segmentations
-hdf5_file.create_dataset("test_ocrs", (len(test_ocrs),), dtype=dt)
+    #Test
+    hdf5_file.create_dataset("test_labels", (len(test_labels),), np.int8)
+    hdf5_file["test_labels"][...] = test_labels
+    hdf5_file.create_dataset("test_segmentations", (len(test_segmentations),), np.int8)
+    hdf5_file["test_segmentations"][...] = test_segmentations
+    hdf5_file.create_dataset("test_ocrs", (len(test_ocrs),), dtype=dt)
 
 def extract_ocrs(ocrs):
     for i in range(len(ocrs)):
