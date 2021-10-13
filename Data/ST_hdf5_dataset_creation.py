@@ -144,7 +144,7 @@ with h5py.File(hdf5_path, mode='w') as hdf5_file:
 
 def extract_ocrs(ocrs):
     
-    with h5py.File(hdf5_path, mode='rw') as hdf5_file:
+    with h5py.File(hdf5_path, mode='a+') as hdf5_file:
         for i in range(len(ocrs)):
             # print how many images are saved every 1000 images
             if i % 100 == 0 and i > 1:
