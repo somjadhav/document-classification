@@ -143,27 +143,29 @@ with h5py.File(hdf5_path, mode='w') as hdf5_file:
     hdf5_file.create_dataset("test_ocrs", (len(test_ocrs),), dtype=dt)
 
 def extract_ocrs(ocrs):
-    for i in range(len(ocrs)):
-        # print how many images are saved every 1000 images
-        if i % 100 == 0 and i > 1:
-            print('File: {}/{}'.format(i, len(ocrs)))
-        # read an image and resize to (img_size, img_size)
-        # cv2 load images as BGR, convert it to RGB
+    
+    with h5py.File(hdf5_path, mode='rw') as hdf5_file:
+        for i in range(len(ocrs)):
+            # print how many images are saved every 1000 images
+            if i % 100 == 0 and i > 1:
+                print('File: {}/{}'.format(i, len(ocrs)))
+            # read an image and resize to (img_size, img_size)
+            # cv2 load images as BGR, convert it to RGB
 
-        addr = ocrs[i]
-        #print(addr)
-        f = open(addr, "r")
-        text = f.read()
-        #print(text)
+            addr = ocrs[i]
+            #print(addr)
+            with open(addr, "r") as f:
+                text = f.read()
+            #print(text)
 
-        if ocrs == train_ocrs:
-            hdf5_file["train_ocrs"][i,...] = text
-        elif ocrs ==val_ocrs:
-            hdf5_file["val_ocrs"][i,...] = text
-        else:
-            hdf5_file["test_ocrs"][i,...] = text
+            if ocrs == train_ocrs:
+                hdf5_file["train_ocrs"][i,...] = text
+            elif ocrs ==val_ocrs:
+                hdf5_file["val_ocrs"][i,...] = text
+            else:
+                hdf5_file["test_ocrs"][i,...] = text
 
-        #mean += img / float(len(train_labels))
+            #mean += img / float(len(train_labels))
 
 
 extract_ocrs(train_ocrs)
