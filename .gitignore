@@ -117,6 +117,3 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-*.e
-*.o
-slurm_file.txt

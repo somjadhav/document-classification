@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#SBATCH -J train_model
+#SBATCH -o slurm_file.o
+#SBATCH -e slurm_file.e
+#SBATCH -p rtx
+#SBATCH -N 5
+#SBATCH -n 20
+#SBATCH -t 1:30:00
+
+cd /work2/08290/somj/frontera/scripts
+source dc/bin/activate
+cd document-classification/image_model
+module load python3
+module load hdf5
+python3 ./eff_small_training.py > slurm_file.o
