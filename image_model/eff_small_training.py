@@ -4,6 +4,8 @@ def func():
     number_gpus = torch.cuda.device_count()
     print("Let's use", number_gpus, "GPUs!")
 
+    parser = argparse.ArgumentParser()
+
     # Required parameters
     parser.add_argument(
         "--epochs",
