@@ -69,7 +69,9 @@ def func():
         scratch_path = args.load_path
 
         save_path = scratch_path + '/image_models/paper_experiments/scratch/' + str(max_epochs) + str(learning_rate) + description + '.pt'
-        hdf5_file = scratch_path + 'HDF5_files/hdf5_small_tobacco_papers_audebert_' + file_number + '.hdf5'
+        # hdf5_file = scratch_path + 'HDF5_files/hdf5_small_tobacco_papers_audebert_' + file_number + '.hdf5'
+        hdf5_file = scratch_path + 'HDF5_files/hdf5_small_tobacco_paper.hdf5'
+
 
         print('lr = {}, batch_size = {}, image_size = {}, {}'.format(learning_rate, batch_size, input_size, description))
 
