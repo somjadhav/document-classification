@@ -13,4 +13,4 @@ source dc/bin/activate
 cd document-classification/image_model
 module load python3
 module load hdf5
-python3 ./eff_small_training.py > slurm_file.o
+python3 ./eff_small_training.py --epochs 20 --eff_model b0 --load_path /work2/08290/somj/frontera/scripts/document-classification/Data/ > slurm_file.o
